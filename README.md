@@ -1,4 +1,4 @@
-# My Home API Microservice Bootstrap
+# Platform API Microservice Bootstrap
 
 ### Prerequisites
 - Java 8
