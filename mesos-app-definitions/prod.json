@@ -1,0 +1,41 @@
+{
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "${IMAGE_TOKEN}",
+      "network": "BRIDGE",
+      "portMappings": [
+        {
+          "containerPort": 8080,
+          "hostPort": 0,
+          "protocol": "tcp"
+        }
+      ],
+      "privileged": false
+    }
+  },
+  "id": "my-home-api-bootstrap-prod",
+  "healthChecks" : [
+    {
+      "path": "/health",
+      "portIndex": 0,
+      "protocol": "HTTP",
+      "gracePeriodSeconds": 300,
+      "intervalSeconds": 60,
+      "timeoutSeconds": 20,
+      "maxConsecutiveFailures": 3
+    }
+  ],
+  "instances": 2,
+  "cpus": 0.2,
+  "mem": 2048,
+  "env": {
+    "SPRING_PROFILES_ACTIVE": "prd"
+  },
+  "upgradeStrategy": {
+    "minimumHealthCapacity": 1.0,
+    "maximumOverCapacity": 0.5
+  },
+  "constraints": [["role", "CLUSTER", "gp"]],
+  "uris": ["file:///root/.dockercfg"]
+}
