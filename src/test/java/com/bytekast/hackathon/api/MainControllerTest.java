@@ -1,4 +1,4 @@
-package com.tendril.myhome.api;
+package com.bytekast.hackathon.api;
 
 
 import org.junit.Test;
